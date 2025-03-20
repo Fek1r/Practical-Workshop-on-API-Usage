@@ -68,6 +68,6 @@ Create an engaging and informative workshop (30-45 minutes) that explains and de
 5. **Creativity or unique use of API capabilities** – 10%
 
 ## **Recommended Resources**
-- **Backend:** Express.js, FastAPI, Django REST Framework, Spring Boot
+- **Backend:** C#, Express.js, FastAPI, Django REST Framework, Spring Boot
 - **Frontend:** React, Vue.js, plain JavaScript (fetch, Axios)
 - **API Testing:** Postman, Insomnia
