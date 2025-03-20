@@ -15,8 +15,10 @@ const LoginForm = () => {
 		try {
 			const response = await loginUser(formData);
 			localStorage.setItem('token', response.data.token);
+			console.log({response});
 			setMessage('Login successful.');
 		} catch (error) {
+			console.log("Error: ", error);
 			setMessage('Login failed.');
 		}
 	};
@@ -31,8 +33,8 @@ const LoginForm = () => {
 					<div className='input-group'>
 						<input type="password" name="password" placeholder="Password" onChange={handleChange} required />
 					</div>
-						<button type="submit" className='login-button'>Login</button>
-						{message && <p>{message}</p>}
+					<button type="submit" className='login-button'>Login</button>
+					{message && <p>{message}</p>}
 				</form>
 			</div>
 		</div>
