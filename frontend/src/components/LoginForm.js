@@ -22,12 +22,20 @@ const LoginForm = () => {
 	};
 
 	return (
-		<form onSubmit={handleSubmit}>
-			<input type="email" name="email" placeholder="E-mail address" onChange={handleChange} required />
-			<input type="password" name="password" placeholder="Password" onChange={handleChange} required />
-			<button type="submit">Login</button>
-			{message && <p>{message}</p>}
-		</form>
+		<div className='login-container'>
+			<div className='login-box'>
+				<form onSubmit={handleSubmit}>
+					<div className='input-group'>
+						<input type="email" name="email" placeholder="E-mail address" onChange={handleChange} required />
+					</div>
+					<div className='input-group'>
+						<input type="password" name="password" placeholder="Password" onChange={handleChange} required />
+					</div>
+						<button type="submit" className='login-button'>Login</button>
+						{message && <p>{message}</p>}
+				</form>
+			</div>
+		</div>
 	);
 };
 
