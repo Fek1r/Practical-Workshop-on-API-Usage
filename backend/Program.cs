@@ -1,7 +1,6 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 
-namespace DockerHw4
+namespace Anatolij
 {
     class Program
     {
@@ -19,7 +18,7 @@ namespace DockerHw4
                context.Response.ContentType = "text/html";
                context.Response.OutputStream.Write(System.Text.Encoding.UTF8.GetBytes("<h1>Hello World</h1>"));
                context.Response.OutputStream.Close();
-               Console.WriteLine("Sent response");  
+               Console.WriteLine("Sent response");
            }
         }
     }
