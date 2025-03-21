@@ -1,25 +1,28 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
+using Anatolij.Http;
+using Anatolij.Data;
 
-namespace Anatolij
+namespace Anatolij;
+
+public class Program
 {
-    class Program
+    public static void Main()
     {
-        static void Main(string[] args)
+        using (AppDbContext db = new AppDbContext()) // Подключаемся к базе
         {
-           System.Net.HttpListener listener = new System.Net.HttpListener();
-           listener.Prefixes.Add("http://localhost:8080/");
-           listener.Start();
-           Console.WriteLine("Starting host on http://localhost:8080/");
-           while (true)
-           {
-               HttpListenerContext context = listener.GetContext();
-               Console.WriteLine("Got request");
-               context.Response.StatusCode = 200;
-               context.Response.ContentType = "text/html";
-               context.Response.OutputStream.Write(System.Text.Encoding.UTF8.GetBytes("<h1>Hello World</h1>"));
-               context.Response.OutputStream.Close();
-               Console.WriteLine("Sent response");
-           }
+            db.Database.EnsureCreated(); // Создаем базу, если её нет
+        }
+
+        HttpListener listener = new HttpListener();
+        listener.Prefixes.Add("http://localhost:8080/");
+        listener.Start();
+        Console.WriteLine("Сервер запущен на http://localhost:8080/");
+
+        while (true)
+        {
+            HttpListenerContext context = listener.GetContext(); // Ждем входящий запрос
+            HttpHandler.HandleRequest(context.Request, context.Response); // Передаем запрос в обработчик
         }
     }
 }
