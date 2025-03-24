@@ -1,5 +1,10 @@
 [
   {
+    "id": 1,
+    "name": "Admin",
+    "password": "12345"
+  },
+  {
     "id": 2,
     "name": "Alan",
     "password": "123"
@@ -8,5 +13,10 @@
     "id": 3,
     "name": "SerGay",
     "password": "sSuperKrut007"
+  },
+  {
+    "id": 4,
+    "name": "Mark",
+    "password": "Down"
   }
 ]
