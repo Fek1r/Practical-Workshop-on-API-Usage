@@ -1,0 +1,59 @@
+openapi: 3.0.0
+info:
+  title: Anatolij API
+  description: API for user management
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: Local server
+paths:
+  /:
+    get:
+      summary: Welcome message
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: string
+                example: Hello User!
+  /users:
+    get:
+      summary: Get a list of users
+      responses:
+        '200':
+          description: List of users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+    post:
+      summary: Add a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: User added
+        '400':
+          description: JSON validation error
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: Anatolij
+        password:
+          type: string
+          example: securepassword
