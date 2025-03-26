@@ -7,32 +7,23 @@ namespace Anatolij.Data;
 
 public static class DataHandler
 {
-    private static readonly string FilePath = "users.json";
+    private static readonly string FilePath = "Database/users.json";
 
-    public static void SaveUser(Anatolij.Models.User user)
+    public static void SaveAllUsersFromDb()
     {
-        List<Anatolij.Models.User> users = LoadUsers(); // Загружаем текущих пользователей
-        users.Add(user); // Добавляем нового пользователя
-
-        string json = JsonSerializer.Serialize(users, new JsonSerializerOptions { WriteIndented = true });
-        File.WriteAllText(FilePath, json); // Записываем в JSON-файл
-    }
-
-    public static List<Anatolij.Models.User> LoadUsers()
-    {
-        if (!File.Exists(FilePath)) // Если файла нет, создаем пустой список
+        using (AppDbContext db = new AppDbContext()) // Открываем соединение с базой
         {
-            return new List<Anatolij.Models.User>();
+            List<User> users = db.Users.ToList(); // Загружаем всех пользователей
+            string json = JsonSerializer.Serialize(users, new JsonSerializerOptions { WriteIndented = true });
+
+            // Проверяем существование папки
+            string directory = Path.GetDirectoryName(FilePath);
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
+
+            File.WriteAllText(FilePath, json); // Перезаписываем JSON-файл всеми пользователями
         }
-
-        string json = File.ReadAllText(FilePath); // Читаем JSON-файл
-        List<Anatolij.Models.User> users = JsonSerializer.Deserialize<List<Anatolij.Models.User>>(json);
-
-        if (users == null) // Если десериализация не удалась, создаем пустой список
-        {
-            return new List<Anatolij.Models.User>();
-        }
-
-        return users; // Возвращаем список пользователей
     }
 }

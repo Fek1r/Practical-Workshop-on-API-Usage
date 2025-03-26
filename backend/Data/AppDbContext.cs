@@ -18,16 +18,16 @@ public class AppDbContext : DbContext
         string connectionString = config["ConnectionStrings"]["PostgresConnection"];
         options.UseNpgsql(connectionString); // Подключаемся к базе данных
     }
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-{
-    modelBuilder.Entity<Anatolij.Models.User>(entity =>
-    {
-        entity.ToTable("users");
-        entity.HasKey(e => e.id);
-        entity.Property(e => e.id).HasColumnName("id");
-        entity.Property(e => e.name).HasColumnName("name");
-        entity.Property(e => e.password).HasColumnName("password");
-    });
-}
 
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Anatolij.Models.User>(entity =>
+        {
+            entity.ToTable("users");
+            entity.HasKey(e => e.id);
+            entity.Property(e => e.id).HasColumnName("id");
+            entity.Property(e => e.name).HasColumnName("name");
+            entity.Property(e => e.password).HasColumnName("password");
+        });
+    }
 }

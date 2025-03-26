@@ -17,7 +17,7 @@ public static class HttpHandler
         {
             SendResponse(response, 200, "\"Hello User!\"");
         }
-        if (request.HttpMethod == "GET" && request.Url.AbsolutePath == "/users")
+        else if (request.HttpMethod == "GET" && request.Url.AbsolutePath == "/users")
         {
             HandleGetUsers(response);
         }
@@ -36,11 +36,18 @@ public static class HttpHandler
         using (AppDbContext db = new AppDbContext()) // Открываем базу данных
         {
             List<User> users = db.Users.ToList(); // Получаем всех пользователей
-            string json = JsonSerializer.Serialize(users, new JsonSerializerOptions { WriteIndented = true });
+            
+            if (users.Count == 0)
+            {
+                SendResponse(response, 404, "No users found");
+                return;
+            }
 
+            string json = JsonSerializer.Serialize(users, new JsonSerializerOptions { WriteIndented = true });
             SendResponse(response, 200, json); // Отправляем список пользователей
         }
     }
+
 
     private static void HandlePostUser(HttpListenerRequest request, HttpListenerResponse response)
     {
@@ -49,21 +56,21 @@ public static class HttpHandler
             string body = reader.ReadToEnd();
             User user = JsonSerializer.Deserialize<User>(body);
 
-            if (user == null) // Если не удалось десериализовать, возвращаем ошибку
+            if (user == null) 
             {
                 SendResponse(response, 400, "Invalid JSON");
                 return;
             }
 
-            using (AppDbContext db = new AppDbContext()) // Открываем базу данных
+            using (AppDbContext db = new AppDbContext()) 
             {
                 db.Users.Add(user);
                 db.SaveChanges(); // Сохраняем пользователя в базе данных
             }
 
-            DataHandler.SaveUser(user); // Сохраняем пользователя в JSON
+            DataHandler.SaveAllUsersFromDb(); // Теперь сохраняем всех пользователей из базы в JSON
 
-            SendResponse(response, 201, "User added"); // Отправляем подтверждение
+            SendResponse(response, 201, "User added and users.json updated"); 
         }
     }
 
