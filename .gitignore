@@ -1,3 +1,6 @@
+# Backend ignore
 /backend/bin
 /backend/obj
-# /backend/appsettings.json
+/backend/appsettings.json
+
+# Mouth_end ignore
