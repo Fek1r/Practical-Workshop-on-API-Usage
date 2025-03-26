@@ -15,7 +15,8 @@ public static class HttpHandler
 
         if (request.HttpMethod == "GET" && request.Url.AbsolutePath == "/")
         {
-            SendResponse(response, 200, "\"Hello User!\"");
+            response.ContentType = "text/html"; // Указываем, что ответ будет в HTML
+            SendResponse(response, 200, "<h1>Hello Baby!)</h1>");
         }
         else if (request.HttpMethod == "GET" && request.Url.AbsolutePath == "/users")
         {
@@ -27,7 +28,7 @@ public static class HttpHandler
         }
         else
         {
-            SendResponse(response, 404, "Not Found"); // Если запрос не найден
+            SendResponse(response, 404, "No Endpoint");
         }
     }
 
@@ -36,18 +37,11 @@ public static class HttpHandler
         using (AppDbContext db = new AppDbContext()) // Открываем базу данных
         {
             List<User> users = db.Users.ToList(); // Получаем всех пользователей
-            
-            if (users.Count == 0)
-            {
-                SendResponse(response, 404, "No users found");
-                return;
-            }
 
             string json = JsonSerializer.Serialize(users, new JsonSerializerOptions { WriteIndented = true });
             SendResponse(response, 200, json); // Отправляем список пользователей
         }
     }
-
 
     private static void HandlePostUser(HttpListenerRequest request, HttpListenerResponse response)
     {
