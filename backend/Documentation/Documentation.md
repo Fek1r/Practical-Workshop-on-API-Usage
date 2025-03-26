@@ -96,3 +96,10 @@ Adds a new user to the database.
 ## Setup Instructions
 To run this API locally, ensure that you have a web server running on `http://localhost:8080`. You can test the endpoints using tools like:
 - [Postman](https://www.postman.com/)
+
+## C# Dependences
+- System.Net
+- Microsoft.EntityFrameworkCore
+- System.Text.Json
+- System.Text
+- System.Collections.Generic
