@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 // import { loginUser } from '../services/api';
 import './form.css';
-// import users from '../users.json';
 // import fs from 'fs'
 // const fs = require('fs');
 
