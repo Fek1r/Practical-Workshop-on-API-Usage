@@ -57,7 +57,10 @@ const LoginForm = () => {
 					<div className='input-group'>
 						<input type="password" name="password" placeholder="Password" onChange={handleChange} required />
 					</div>
-					<button type="submit" className='login-button'>Login</button>
+					<div className='input-group'>
+						<input type="password" name="password" placeholder=" Confirm your Password" onChange={handleChange} required />
+					</div>
+					<button type="submit" className='login-button'>REGISTER</button>
 					{message && <p>{message}</p>}
 				</form>
 			</div>
