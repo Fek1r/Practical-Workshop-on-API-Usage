@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 // import { loginUser } from '../services/api';
 import './form.css';
-// import users from '../users.json';
 // import fs from 'fs'
 // const fs = require('fs');
 
-const API_URL = "http://localhost:8080/users";
+const API_URL = "http://localhost:8080/";
 
 const LoginForm = () => {
 	const [formData, setFormData] = useState({ name: '', password: '' });
@@ -32,15 +31,19 @@ const LoginForm = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			await fetch(API_URL, {
+			const response = await fetch("http://localhost:8080/users", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(formData),
-			  });
-			  fetchUsers();
+			});
+	
+			if (response.ok) {
+				setMessage("User added successfully!");
+			} else {
+				setMessage("Error adding user.");
+			}
 		} catch (error) {
-			console.log("Error: ", error);
-			setMessage('Login failed. Reason: ' + error);
+			setMessage("Request failed: " + error);
 		}
 	};
 
@@ -54,7 +57,10 @@ const LoginForm = () => {
 					<div className='input-group'>
 						<input type="password" name="password" placeholder="Password" onChange={handleChange} required />
 					</div>
-					<button type="submit" className='login-button'>Login</button>
+					<div className='input-group'>
+						<input type="password" name="password" placeholder=" Confirm your Password" onChange={handleChange} required />
+					</div>
+					<button type="submit" className='login-button'>REGISTER</button>
 					{message && <p>{message}</p>}
 				</form>
 			</div>
