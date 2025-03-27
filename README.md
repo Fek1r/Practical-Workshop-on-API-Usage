@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # **Workshop: API Development & Testing**
 
 ## **Project Overview**
