@@ -13,7 +13,7 @@ public static class HttpHandler
     {
         response.ContentType = "application/json"; // Указываем, что ответ в JSON-формате
 
-        if (request.HttpMethod == "GET" && request.Url.AbsolutePath == "/users")
+        if (request.HttpMethod == "GET" && request.Url.AbsolutePath == "/")
         {
             response.ContentType = "text/html"; // Указываем, что ответ будет в HTML
             SendResponse(response, 200, "<h1>Hello Baby!)</h1>");

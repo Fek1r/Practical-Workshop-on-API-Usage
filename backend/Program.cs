@@ -12,7 +12,7 @@ public class Program
     {
         using (AppDbContext db = new AppDbContext()) // Подключаемся к базе
         {
-            db.Database.EnsureCreated(); // Создаем базу, если её нет
+            // db.Database.EnsureCreated(); // Создаем базу, если её нет
         }
 
         HttpListener listener = new HttpListener();
