@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   database:
     image: postgres:16
@@ -15,12 +13,14 @@ services:
 
   backend:
     build: ./backend
+    working_dir: /app
     volumes:
       - ./backend:/app
     depends_on:
       - database
     environment:
-      ConnectionStrings__PostgresConnection: "Host=database;Port=5432;Database=users;Username=postgres;Password=mark007!"
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__PostgresConnection=Host=database;Port=5432;Database=users;Username=postgres;Password=mark007!
     ports:
       - "8080:8080"
 
@@ -30,6 +30,12 @@ services:
       - backend
     ports:
       - "3000:80"
+    environment:
+      - REACT_APP_API_URL=http://localhost:8080
 
 volumes:
   pgdata:
+
+networks:
+  default:
+    driver: bridge

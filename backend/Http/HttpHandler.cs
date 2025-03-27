@@ -62,7 +62,7 @@ public static class HttpHandler
                 db.SaveChanges(); // Сохраняем пользователя в базе данных
             }
 
-            DataHandler.SaveAllUsersFromDb(); // Теперь сохраняем всех пользователей из базы в JSON
+            // DataHandler.SaveAllUsersFromDb(); 
 
             SendResponse(response, 201, "User added and users.json updated"); 
         }
