@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './loginform.css';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { data, Link } from 'react-router-dom'; // Import Link from react-router-dom
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({ name: '', password: '' });
@@ -13,14 +13,20 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:8080/users////jdngkjdbfkjbdkjbfgjkdkf/", {
-        method: "POST",
+      const response = await fetch("http://localhost:8080/users", {
+        method: "GET",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        // body: JSON.stringify(formData),
       });
 
+      const data = await response.json();
       if (response.ok) {
-        setMessage("User logged in successfully!");
+        const exists = data.some(user => user.name === formData.name && user.password === formData.password);
+        if (exists) {
+          setMessage("User logged in successfully!");
+        } else {
+          setMessage("Error logging in user.");
+        }
       } else {
         setMessage("Error logging in user.");
       }
