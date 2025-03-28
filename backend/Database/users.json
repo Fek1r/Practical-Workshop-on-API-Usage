@@ -68,5 +68,15 @@
     "id": 14,
     "name": "Nikita",
     "password": "Gogogo"
+  },
+  {
+    "id": 15,
+    "name": "Admin",
+    "password": "12345"
+  },
+  {
+    "id": 16,
+    "name": "Gay",
+    "password": "111gay666"
   }
 ]

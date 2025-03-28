@@ -58,7 +58,7 @@ const LoginForm = () => {
             />
           </div>
           <button type="submit" className='login-button'>
-            REGISTER
+            LOGIN
           </button>
 
           {/* Use Link for navigation to the registration page */}
