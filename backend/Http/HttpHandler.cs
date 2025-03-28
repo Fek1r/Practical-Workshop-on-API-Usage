@@ -62,8 +62,6 @@ public static class HttpHandler
                 db.SaveChanges(); 
             }
 
-            // DataHandler.SaveAllUsersFromDb(); // user.json update
-
             SendResponse(response, 201, "User added and users.json updated"); 
         }
     }

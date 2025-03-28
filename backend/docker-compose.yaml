@@ -1,0 +1,32 @@
+services:
+  database:
+    image: postgres:16
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mark007!
+      POSTGRES_DB: users
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: .
+    working_dir: /app
+    depends_on:
+      - database
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__PostgresConnection=Host=database;Port=5432;Database=users;Username=postgres;Password=mark007!
+    ports:
+      - "8080:8080"
+
+volumes:
+  pgdata:
+
+networks:
+  default:
+    driver: bridge
+
+
