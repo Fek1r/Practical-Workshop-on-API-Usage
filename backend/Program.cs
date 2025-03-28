@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Net;
-using Anatolij.Http;
+using System.Text;
 using Anatolij.Data;
+using Anatolij.Http;
 
 namespace Anatolij;
 
@@ -9,7 +10,7 @@ public class Program
 {
     public static void Main()
     {
-        using (AppDbContext db = new AppDbContext()) // Подключаемся к базе
+        using (AppDbContext db = new AppDbContext())
         {
             db.Database.EnsureCreated(); // Создаем базу, если её нет
         }
@@ -22,7 +23,21 @@ public class Program
         while (true)
         {
             HttpListenerContext context = listener.GetContext(); // Ждем входящий запрос
-            HttpHandler.HandleRequest(context.Request, context.Response); // Передаем запрос в обработчик
+
+            // Добавляем CORS заголовки
+            context.Response.Headers.Add("Access-Control-Allow-Origin", "*");
+            context.Response.Headers.Add("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
+            context.Response.Headers.Add("Access-Control-Allow-Headers", "Content-Type");
+
+            // Обрабатываем OPTIONS запросы (для CORS)
+            if (context.Request.HttpMethod == "OPTIONS")
+            {
+                context.Response.StatusCode = 200;
+                context.Response.Close();
+                continue;
+            }
+
+            HttpHandler.HandleRequest(context.Request, context.Response); 
         }
     }
 }

@@ -11,12 +11,12 @@ public class AppDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
-        string json = File.ReadAllText("appsettings.json"); // Читаем файл конфигурации
+        string json = File.ReadAllText("appsettings.json"); 
         Dictionary<string, Dictionary<string, string>> config =
          JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, string>>>(json);
 
         string connectionString = config["ConnectionStrings"]["PostgresConnection"];
-        options.UseNpgsql(connectionString); // Подключаемся к базе данных
+        options.UseNpgsql(connectionString); 
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

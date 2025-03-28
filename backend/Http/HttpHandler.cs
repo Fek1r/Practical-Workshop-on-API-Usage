@@ -11,12 +11,12 @@ public static class HttpHandler
 {
     public static void HandleRequest(HttpListenerRequest request, HttpListenerResponse response)
     {
-        response.ContentType = "application/json"; // Указываем, что ответ в JSON-формате
+        response.ContentType = "application/json"; 
 
         if (request.HttpMethod == "GET" && request.Url.AbsolutePath == "/")
         {
-            response.ContentType = "text/html"; // Указываем, что ответ будет в HTML
-            SendResponse(response, 200, "<h1>Hello Baby!)</h1>");
+            response.ContentType = "text/html"; 
+            SendResponse(response, 200, "<h1>Hello Anatolij! Our king and God!)</h1>");
         }
         else if (request.HttpMethod == "GET" && request.Url.AbsolutePath == "/users")
         {
@@ -34,12 +34,12 @@ public static class HttpHandler
 
     private static void HandleGetUsers(HttpListenerResponse response)
     {
-        using (AppDbContext db = new AppDbContext()) // Открываем базу данных
+        using (AppDbContext db = new AppDbContext())
         {
-            List<User> users = db.Users.ToList(); // Получаем всех пользователей
+            List<User> users = db.Users.ToList(); 
 
             string json = JsonSerializer.Serialize(users, new JsonSerializerOptions { WriteIndented = true });
-            SendResponse(response, 200, json); // Отправляем список пользователей
+            SendResponse(response, 200, json); 
         }
     }
 
@@ -59,10 +59,8 @@ public static class HttpHandler
             using (AppDbContext db = new AppDbContext()) 
             {
                 db.Users.Add(user);
-                db.SaveChanges(); // Сохраняем пользователя в базе данных
+                db.SaveChanges(); 
             }
-
-            DataHandler.SaveAllUsersFromDb(); // Теперь сохраняем всех пользователей из базы в JSON
 
             SendResponse(response, 201, "User added and users.json updated"); 
         }
@@ -70,9 +68,9 @@ public static class HttpHandler
 
     private static void SendResponse(HttpListenerResponse response, int statusCode, string message)
     {
-        response.StatusCode = statusCode; // Устанавливаем статус-код
+        response.StatusCode = statusCode;
         byte[] buffer = Encoding.UTF8.GetBytes(message); // Кодируем текст в байты
         response.OutputStream.Write(buffer, 0, buffer.Length); // Отправляем данные клиенту
-        response.OutputStream.Close(); // Закрываем поток
+        response.OutputStream.Close();
     }
 }

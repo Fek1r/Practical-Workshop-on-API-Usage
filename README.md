@@ -6,7 +6,7 @@ This workshop aims to provide a comprehensive understanding of API development, 
 ## **Team & Responsibilities**
 
 ### **Project Manager & Keynote Speaker**
-- **Sergays Krasikovs** – Organizer, leader, and keynote speaker
+- **Sergejs Krasikovs** – Organizer, leader, and keynote speaker
 
 ### **Speakers**
 - **Gabriels Mardekajs & Mārtiņš Matīss Budreika** – Explanation of APIs and their importance
@@ -68,6 +68,6 @@ Create an engaging and informative workshop (30-45 minutes) that explains and de
 5. **Creativity or unique use of API capabilities** – 10%
 
 ## **Recommended Resources**
-- **Backend:** Express.js, FastAPI, Django REST Framework, Spring Boot
+- **Backend:** C#, Express.js, FastAPI, Django REST Framework, Spring Boot
 - **Frontend:** React, Vue.js, plain JavaScript (fetch, Axios)
 - **API Testing:** Postman, Insomnia
