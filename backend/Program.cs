@@ -2,7 +2,7 @@
 using System.Net;
 using System.Text;
 using Anatolij.Data;
-using Anatolij.Http; // добавь это
+using Anatolij.Http;
 
 namespace Anatolij;
 
@@ -10,9 +10,9 @@ public class Program
 {
     public static void Main()
     {
-        using (AppDbContext db = new AppDbContext()) // Подключаемся к базе
+        using (AppDbContext db = new AppDbContext())
         {
-            // db.Database.EnsureCreated(); // Создаем базу, если её нет
+            db.Database.EnsureCreated(); // Создаем базу, если её нет
         }
 
         HttpListener listener = new HttpListener();
@@ -37,7 +37,7 @@ public class Program
                 continue;
             }
 
-            HttpHandler.HandleRequest(context.Request, context.Response); // Передаем запрос в обработчик
+            HttpHandler.HandleRequest(context.Request, context.Response); 
         }
     }
 }
