@@ -16,7 +16,7 @@ public static class HttpHandler
         if (request.HttpMethod == "GET" && request.Url.AbsolutePath == "/")
         {
             response.ContentType = "text/html"; 
-            SendResponse(response, 200, "<h1>Hello Anatolij! Our king and God!)</h1>");
+            SendResponse(response, 200, "<h1>Hello World!</h1>");
         }
         else if (request.HttpMethod == "GET" && request.Url.AbsolutePath == "/users")
         {

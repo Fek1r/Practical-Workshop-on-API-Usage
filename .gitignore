@@ -1,6 +1,5 @@
 /backend/bin
 /backend/obj
-/backend/appsettings.json
 
 # frontend
 /frontend/node_modules
