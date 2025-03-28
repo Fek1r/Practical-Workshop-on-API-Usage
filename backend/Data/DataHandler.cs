@@ -11,9 +11,9 @@ public static class DataHandler
 
     public static void SaveAllUsersFromDb()
     {
-        using (AppDbContext db = new AppDbContext()) // Открываем соединение с базой
+        using (AppDbContext db = new AppDbContext()) 
         {
-            List<User> users = db.Users.ToList(); // Загружаем всех пользователей
+            List<User> users = db.Users.ToList(); 
             string json = JsonSerializer.Serialize(users, new JsonSerializerOptions { WriteIndented = true });
 
             // Проверяем существование папки
@@ -23,7 +23,7 @@ public static class DataHandler
                 Directory.CreateDirectory(directory);
             }
 
-            File.WriteAllText(FilePath, json); // Перезаписываем JSON-файл всеми пользователями
+            File.WriteAllText(FilePath, json); 
         }
     }
 }

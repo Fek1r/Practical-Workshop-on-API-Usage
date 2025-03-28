@@ -6,7 +6,7 @@ This workshop aims to provide a comprehensive understanding of API development, 
 ## **Team & Responsibilities**
 
 ### **Project Manager & Keynote Speaker**
-- **Sergejs Krasikovs** – Organizer, leader, and keynote speaker
+- **SerGays Krasikovs** – Organizer, leader, and keynote overlord speaker
 
 ### **Speakers**
 - **Gabriels Mardekajs & Mārtiņš Matīss Budreika** – Explanation of APIs and their importance
