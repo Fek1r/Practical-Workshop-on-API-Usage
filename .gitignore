@@ -4,3 +4,16 @@
 # /backend/appsettings.json
 
 # Mouth ignore
+# зависимости
+node_modules/
+
+# build файлов
+build/
+dist/
+
+# системные файлы
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.env
+.env.local
