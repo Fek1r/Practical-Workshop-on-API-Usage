@@ -1,7 +1,6 @@
 # Backend ignore
 /backend/bin
 /backend/obj
-/backend/appsettings.json
 
 # Frontend ignore
 /frontend/node_modules
