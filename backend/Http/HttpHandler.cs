@@ -16,7 +16,7 @@ public static class HttpHandler
         if (request.HttpMethod == "GET" && request.Url.AbsolutePath == "/")
         {
             response.ContentType = "text/html"; 
-            SendResponse(response, 200, "<h1>Hello World!</h1>");
+            SendResponse(response, 200, "<h1>Hello Anatolij! Our king and God!)</h1>");
         }
         else if (request.HttpMethod == "GET" && request.Url.AbsolutePath == "/users")
         {
@@ -61,8 +61,6 @@ public static class HttpHandler
                 db.Users.Add(user);
                 db.SaveChanges(); 
             }
-
-            // DataHandler.SaveAllUsersFromDb(); // user.json update
 
             SendResponse(response, 201, "User added and users.json updated"); 
         }

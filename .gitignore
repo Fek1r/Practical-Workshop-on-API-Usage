@@ -1,14 +1,14 @@
+# Backend ignore
 /backend/bin
 /backend/obj
 
-# frontend
+# Frontend ignore
 /frontend/node_modules
 /frontend/.pnp
 /frontend/.pnp.js
 /frontend/coverage
 /frontend/build
 
-# misc
 .DS_Store
 .env.local
 .env.development.local
