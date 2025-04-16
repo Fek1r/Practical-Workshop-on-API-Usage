@@ -5,7 +5,7 @@ COPY ["hw4.csproj", "."]
 RUN dotnet restore
 
 COPY . . 
-RUN dotnet publish hw4.csproj -c Release -o /app/publish
+RUN dotnet publish hw4.csproj -c Release -o /app/publish && ls /app/publish
 
 FROM mcr.microsoft.com/dotnet/aspnet:9.0
 WORKDIR /app
